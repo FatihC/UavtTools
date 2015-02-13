@@ -1,0 +1,73 @@
+﻿<style>
+    #map_canvas {
+        position: relative;
+        height: 900px;
+        width: 1600px;
+        margin: 0px;
+    }
+
+    .angular-google-map-container {
+        /*position: absolute;*/
+        width: 1600px;
+        height: 800px;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        position: fixed;
+        /*left: 0;*/
+        margin-left: 0;
+        margin-right: 0;
+        left: -90px;
+    }
+
+    .marker-labels {
+        color: red;
+        background-color: white;
+        font-family: "Lucida Grande", "Arial", sans-serif;
+        font-size: 10px;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid black;
+        white-space: nowrap;
+    }
+</style>
+<div ng-controller="indexController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label class="control-label col-md-2" style="line-height: 6px; margin-top:5px;">Dosya</label>
+                    <div class="col-md-10">
+                        <!--<input id="fileToBeUpload" ng-file-select type="file" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess" required />-->
+                        <label class="btn btn-primary" for="fileToBeUpload">
+                            <input id="fileToBeUpload" ng-file-select type="file" ng-click="item.upload()" style="display:none;" ng-disabled="item.isReady || item.isUploading || item.isSuccess" required />
+                            Dosya Ekle
+                        </label>
+                        <label style="margin-left:5px;">
+                            {{fileNameParam}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="col-md-1">
+                        <span style="padding-left: 90%" ng-show="uploader.progress">{{'%' + uploader.progress}}</span>
+                    </div>
+                    <div class="col-md-11">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%'}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options">
+                <ui-gmap-markers models="markers" coords="'self'" icon="'icon'">
+                </ui-gmap-markers>
+            </ui-gmap-google-map>
+        </div>
+    </div>
+</div>

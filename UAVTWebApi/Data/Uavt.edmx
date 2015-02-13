@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UAVTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ABONE_BILGI">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BOLGE_KODU" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="BOLGE_ADI" Type="nvarchar" MaxLength="30" />
+          <Property Name="KARNE_NO" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="KARNE_ADRESI" Type="nvarchar" MaxLength="70" />
+          <Property Name="TESISAT_NO" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="MARKA" Type="nvarchar" MaxLength="3" />
+          <Property Name="SAYAC_MARKA_ADI" Type="nvarchar" MaxLength="20" />
+          <Property Name="SAYAC_NO" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="UNVAN" Type="nvarchar" MaxLength="70" />
+          <Property Name="ADRES" Type="nvarchar" MaxLength="100" />
+          <Property Name="SOZLESME_TARIHI" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="IPTAL_TARIHI" Type="decimal" Precision="28" Scale="0" />
+          <Property Name="SOZLESME_UNVANI" Type="varchar" MaxLength="50" />
+          <Property Name="AKTARIM_ZAMANI" Type="varchar" MaxLength="70" />
+        </EntityType>
+        <EntityType Name="AuditLogs">
+          <Key>
+            <PropertyRef Name="Serno" />
+          </Key>
+          <Property Name="Serno" Type="numeric" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserSerno" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="OptionSelection" Type="nvarchar(max)" />
+          <Property Name="FormSerno" Type="nvarchar(max)" />
+          <Property Name="FormDescription" Type="nvarchar(max)" />
+          <Property Name="ProgressStatus" Type="nvarchar(max)" />
+          <Property Name="PreviousCheckStatus" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="DistrictCode" Type="nvarchar(max)" />
+          <Property Name="VillageCode" Type="nvarchar(max)" />
+          <Property Name="StreetCode" Type="nvarchar(max)" />
+          <Property Name="CsbmCode" Type="nvarchar(max)" />
+          <Property Name="DoorNumber" Type="nvarchar(max)" />
+          <Property Name="SiteName" Type="nvarchar(max)" />
+          <Property Name="BlockName" Type="nvarchar(max)" />
+          <Property Name="IndoorNumber" Type="nvarchar(max)" />
+          <Property Name="UavtCode" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="ProcessDate" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Districts">
+          <Key>
+            <PropertyRef Name="districtCode" />
+          </Key>
+          <Property Name="districtCode" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="districtName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="uavt_63">
+          <Key>
+            <PropertyRef Name="UAVT_ADRES_NO" />
+          </Key>
+          <Property Name="IL" Type="nvarchar" MaxLength="255" />
+          <Property Name="ILCE_KODU" Type="nvarchar" MaxLength="255" />
+          <Property Name="ILCE_ADI" Type="nvarchar" MaxLength="255" />
+          <Property Name="BUCAK_KODU" Type="nvarchar" MaxLength="255" />
+          <Property Name="BUCAK_ADI" Type="nvarchar" MaxLength="255" />
+          <Property Name="KOY_KODU" Type="nvarchar" MaxLength="255" />
+          <Property Name="KOY_ADI" Type="nvarchar" MaxLength="255" />
+          <Property Name="MAHALLE_KODU" Type="nvarchar" MaxLength="255" />
+          <Property Name="MAHALLE_ADI" Type="nvarchar" MaxLength="255" />
+          <Property Name="CSBM_KODU" Type="nvarchar" MaxLength="255" />
+          <Property Name="CSBM_ADI" Type="nvarchar" MaxLength="255" />
+          <Property Name="BINA_KODU" Type="nvarchar" MaxLength="255" />
+          <Property Name="DIS_KAPI_NO" Type="nvarchar" MaxLength="255" />
+          <Property Name="SITE_ADI" Type="nvarchar" MaxLength="255" />
+          <Property Name="BLOK_ADI" Type="nvarchar" MaxLength="255" />
+          <Property Name="UAVT_ADRES_NO" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IC_KAPI_NO" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Uavts">
+          <Key>
+            <PropertyRef Name="serno" />
+          </Key>
+          <Property Name="serno" Type="numeric" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="checkStatus" Type="int" />
+          <Property Name="createDate" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="customerName" Type="varchar" MaxLength="255" />
+          <Property Name="districtCode" Type="varchar" MaxLength="255" />
+          <Property Name="doorNumber" Type="varchar" MaxLength="255" />
+          <Property Name="existOnUavt" Type="int" />
+          <Property Name="meterBrand" Type="varchar" MaxLength="255" />
+          <Property Name="meterNo" Type="varchar" MaxLength="255" />
+          <Property Name="uavtCode" Type="varchar" MaxLength="255" />
+          <Property Name="userSerno" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="wiringNo" Type="varchar" MaxLength="255" />
+          <Property Name="villageCode" Type="varchar" MaxLength="255" />
+          <Property Name="streetCode" Type="varchar" MaxLength="255" />
+          <Property Name="csbmCode" Type="varchar" MaxLength="255" />
+          <Property Name="indoorNumber" Type="varchar" MaxLength="255" />
+          <Property Name="processDate" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="siteName" Type="varchar" MaxLength="255" />
+          <Property Name="blockName" Type="varchar" MaxLength="255" />
+          <Property Name="meterBrandCode" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="numeric" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="createDate" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="fullName" Type="varchar" MaxLength="255" />
+          <Property Name="username" Type="varchar" MaxLength="255" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="int" />
+          <Property Name="userSerno" Type="float" />
+        </EntityType>
+        <EntityType Name="UserSyncHistories">
+          <Key>
+            <PropertyRef Name="serno" />
+          </Key>
+          <Property Name="serno" Type="numeric" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="districtCode" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="lastMbsSyncDate" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="lastUavtSyncDate" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="userSerno" Type="numeric" Precision="19" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="UAVTModelStoreContainer">
+          <EntitySet Name="ABONE_BILGI" EntityType="Self.ABONE_BILGI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuditLogs" EntityType="Self.AuditLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Districts" EntityType="Self.Districts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uavt_63" EntityType="Self.uavt_63" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uavts" EntityType="Self.Uavts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSyncHistories" EntityType="Self.UserSyncHistories" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UAVTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Districts">
+          <Key>
+            <PropertyRef Name="districtCode" />
+          </Key>
+          <Property Name="districtCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="districtName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Uavts">
+          <Key>
+            <PropertyRef Name="serno" />
+          </Key>
+          <Property Name="serno" Type="Decimal" Precision="19" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="checkStatus" Type="Int32" />
+          <Property Name="createDate" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="customerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="districtCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="doorNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="existOnUavt" Type="Int32" />
+          <Property Name="meterBrand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="meterNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="uavtCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="userSerno" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="wiringNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="villageCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="streetCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="csbmCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="indoorNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="processDate" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="siteName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="blockName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="meterBrandCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Decimal" Precision="19" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="createDate" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="fullName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="userSerno" Type="Double" />
+        </EntityType>
+        <EntityType Name="UserSyncHistories">
+          <Key>
+            <PropertyRef Name="serno" />
+          </Key>
+          <Property Name="serno" Type="Decimal" Precision="19" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="districtCode" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="lastMbsSyncDate" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="lastUavtSyncDate" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="userSerno" Type="Decimal" Precision="19" Scale="0" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Districts" EntityType="Self.Districts" />
+          <EntitySet Name="Uavts" EntityType="Self.Uavts" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="UserSyncHistories" EntityType="Self.UserSyncHistories" />
+          <EntitySet Name="ABONE_BILGI" EntityType="UAVTModel.ABONE_BILGI" />
+          <EntitySet Name="uavt_63" EntityType="UAVTModel.uavt_63" />
+          <EntitySet Name="AuditLogs" EntityType="UAVTModel.AuditLogs" />
+        </EntityContainer>
+        <EntityType Name="ABONE_BILGI">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BOLGE_KODU" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="BOLGE_ADI" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="KARNE_NO" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="KARNE_ADRESI" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="TESISAT_NO" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="MARKA" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="SAYAC_MARKA_ADI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SAYAC_NO" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="UNVAN" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="ADRES" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SOZLESME_TARIHI" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="IPTAL_TARIHI" Type="Decimal" Precision="28" Scale="0" />
+          <Property Name="SOZLESME_UNVANI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AKTARIM_ZAMANI" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="uavt_63">
+          <Key>
+            <PropertyRef Name="UAVT_ADRES_NO" />
+          </Key>
+          <Property Name="IL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ILCE_KODU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ILCE_ADI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BUCAK_KODU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BUCAK_ADI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KOY_KODU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="KOY_ADI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MAHALLE_KODU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MAHALLE_ADI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CSBM_KODU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CSBM_ADI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BINA_KODU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DIS_KAPI_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SITE_ADI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BLOK_ADI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UAVT_ADRES_NO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IC_KAPI_NO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AuditLogs">
+          <Key>
+            <PropertyRef Name="Serno" />
+          </Key>
+          <Property Name="Serno" Type="Decimal" Nullable="false" Precision="19" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserSerno" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="OptionSelection" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FormSerno" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FormDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProgressStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VillageCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StreetCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CsbmCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DoorNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SiteName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BlockName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IndoorNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UavtCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="ProcessDate" Type="Decimal" Precision="19" Scale="0" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="PreviousCheckStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UAVTModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="UAVTModel.Districts">
+              <MappingFragment StoreEntitySet="Districts">
+                <ScalarProperty Name="districtCode" ColumnName="districtCode" />
+                <ScalarProperty Name="districtName" ColumnName="districtName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uavts">
+            <EntityTypeMapping TypeName="UAVTModel.Uavts">
+              <MappingFragment StoreEntitySet="Uavts">
+                <ScalarProperty Name="meterBrandCode" ColumnName="meterBrandCode" />
+                <ScalarProperty Name="blockName" ColumnName="blockName" />
+                <ScalarProperty Name="siteName" ColumnName="siteName" />
+                <ScalarProperty Name="serno" ColumnName="serno" />
+                <ScalarProperty Name="checkStatus" ColumnName="checkStatus" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="districtCode" ColumnName="districtCode" />
+                <ScalarProperty Name="doorNumber" ColumnName="doorNumber" />
+                <ScalarProperty Name="existOnUavt" ColumnName="existOnUavt" />
+                <ScalarProperty Name="meterBrand" ColumnName="meterBrand" />
+                <ScalarProperty Name="meterNo" ColumnName="meterNo" />
+                <ScalarProperty Name="uavtCode" ColumnName="uavtCode" />
+                <ScalarProperty Name="userSerno" ColumnName="userSerno" />
+                <ScalarProperty Name="wiringNo" ColumnName="wiringNo" />
+                <ScalarProperty Name="villageCode" ColumnName="villageCode" />
+                <ScalarProperty Name="streetCode" ColumnName="streetCode" />
+                <ScalarProperty Name="csbmCode" ColumnName="csbmCode" />
+                <ScalarProperty Name="indoorNumber" ColumnName="indoorNumber" />
+                <ScalarProperty Name="processDate" ColumnName="processDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="UAVTModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="userSerno" ColumnName="userSerno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSyncHistories">
+            <EntityTypeMapping TypeName="UAVTModel.UserSyncHistories">
+              <MappingFragment StoreEntitySet="UserSyncHistories">
+                <ScalarProperty Name="serno" ColumnName="serno" />
+                <ScalarProperty Name="districtCode" ColumnName="districtCode" />
+                <ScalarProperty Name="lastMbsSyncDate" ColumnName="lastMbsSyncDate" />
+                <ScalarProperty Name="lastUavtSyncDate" ColumnName="lastUavtSyncDate" />
+                <ScalarProperty Name="userSerno" ColumnName="userSerno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ABONE_BILGI">
+            <EntityTypeMapping TypeName="UAVTModel.ABONE_BILGI">
+              <MappingFragment StoreEntitySet="ABONE_BILGI">
+                <ScalarProperty Name="AKTARIM_ZAMANI" ColumnName="AKTARIM_ZAMANI" />
+                <ScalarProperty Name="SOZLESME_UNVANI" ColumnName="SOZLESME_UNVANI" />
+                <ScalarProperty Name="IPTAL_TARIHI" ColumnName="IPTAL_TARIHI" />
+                <ScalarProperty Name="SOZLESME_TARIHI" ColumnName="SOZLESME_TARIHI" />
+                <ScalarProperty Name="ADRES" ColumnName="ADRES" />
+                <ScalarProperty Name="UNVAN" ColumnName="UNVAN" />
+                <ScalarProperty Name="SAYAC_NO" ColumnName="SAYAC_NO" />
+                <ScalarProperty Name="SAYAC_MARKA_ADI" ColumnName="SAYAC_MARKA_ADI" />
+                <ScalarProperty Name="MARKA" ColumnName="MARKA" />
+                <ScalarProperty Name="TESISAT_NO" ColumnName="TESISAT_NO" />
+                <ScalarProperty Name="KARNE_ADRESI" ColumnName="KARNE_ADRESI" />
+                <ScalarProperty Name="KARNE_NO" ColumnName="KARNE_NO" />
+                <ScalarProperty Name="BOLGE_ADI" ColumnName="BOLGE_ADI" />
+                <ScalarProperty Name="BOLGE_KODU" ColumnName="BOLGE_KODU" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uavt_63">
+            <EntityTypeMapping TypeName="UAVTModel.uavt_63">
+              <MappingFragment StoreEntitySet="uavt_63">
+                <ScalarProperty Name="IC_KAPI_NO" ColumnName="IC_KAPI_NO" />
+                <ScalarProperty Name="UAVT_ADRES_NO" ColumnName="UAVT_ADRES_NO" />
+                <ScalarProperty Name="BLOK_ADI" ColumnName="BLOK_ADI" />
+                <ScalarProperty Name="SITE_ADI" ColumnName="SITE_ADI" />
+                <ScalarProperty Name="DIS_KAPI_NO" ColumnName="DIS_KAPI_NO" />
+                <ScalarProperty Name="BINA_KODU" ColumnName="BINA_KODU" />
+                <ScalarProperty Name="CSBM_ADI" ColumnName="CSBM_ADI" />
+                <ScalarProperty Name="CSBM_KODU" ColumnName="CSBM_KODU" />
+                <ScalarProperty Name="MAHALLE_ADI" ColumnName="MAHALLE_ADI" />
+                <ScalarProperty Name="MAHALLE_KODU" ColumnName="MAHALLE_KODU" />
+                <ScalarProperty Name="KOY_ADI" ColumnName="KOY_ADI" />
+                <ScalarProperty Name="KOY_KODU" ColumnName="KOY_KODU" />
+                <ScalarProperty Name="BUCAK_ADI" ColumnName="BUCAK_ADI" />
+                <ScalarProperty Name="BUCAK_KODU" ColumnName="BUCAK_KODU" />
+                <ScalarProperty Name="ILCE_ADI" ColumnName="ILCE_ADI" />
+                <ScalarProperty Name="ILCE_KODU" ColumnName="ILCE_KODU" />
+                <ScalarProperty Name="IL" ColumnName="IL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuditLogs">
+            <EntityTypeMapping TypeName="UAVTModel.AuditLogs">
+              <MappingFragment StoreEntitySet="AuditLogs">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PreviousCheckStatus" ColumnName="PreviousCheckStatus" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UavtCode" ColumnName="UavtCode" />
+                <ScalarProperty Name="IndoorNumber" ColumnName="IndoorNumber" />
+                <ScalarProperty Name="BlockName" ColumnName="BlockName" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="DoorNumber" ColumnName="DoorNumber" />
+                <ScalarProperty Name="CsbmCode" ColumnName="CsbmCode" />
+                <ScalarProperty Name="StreetCode" ColumnName="StreetCode" />
+                <ScalarProperty Name="VillageCode" ColumnName="VillageCode" />
+                <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+                <ScalarProperty Name="ProgressStatus" ColumnName="ProgressStatus" />
+                <ScalarProperty Name="FormDescription" ColumnName="FormDescription" />
+                <ScalarProperty Name="FormSerno" ColumnName="FormSerno" />
+                <ScalarProperty Name="OptionSelection" ColumnName="OptionSelection" />
+                <ScalarProperty Name="UserSerno" ColumnName="UserSerno" />
+                <ScalarProperty Name="Serno" ColumnName="Serno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
