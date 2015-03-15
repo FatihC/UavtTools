@@ -12,11 +12,15 @@ namespace UAVTWebapi.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Districts
+    public partial class Villages
     {
         public int Id { get; set; }
-        public Nullable<double> CityCode { get; set; }
-        public Nullable<double> DistrictCode { get; set; }
-        public string DistrictName { get; set; }
+        public string CITY_CODE { get; set; }
+        public string COUNTY_CODE { get; set; }
+        public string COUNTY_NAME { get; set; }
+        public string DISTRICT_CODE { get; set; }
+        public string DISTRICT_NAME { get; set; }
+        public string VILLAGE_CODE { get; set; }
+        public string VILLAGE_NAME { get; set; }
     }
 }

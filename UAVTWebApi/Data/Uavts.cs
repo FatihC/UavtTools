@@ -34,5 +34,7 @@ namespace UAVTWebapi.Data
         public string siteName { get; set; }
         public string blockName { get; set; }
         public string meterBrandCode { get; set; }
+        public Nullable<int> status { get; set; }
+        public string cityCode { get; set; }
     }
 }

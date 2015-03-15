@@ -54,6 +54,9 @@
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -170,6 +173,12 @@
     <Compile Include="Data\AuditLogs.cs">
       <DependentUpon>Uavt.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Cities.cs">
+      <DependentUpon>Uavt.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Configurations.cs">
+      <DependentUpon>Uavt.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Districts.cs">
       <DependentUpon>Uavt.tt</DependentUpon>
     </Compile>
@@ -200,9 +209,13 @@
     <Compile Include="Data\UserSyncHistories.cs">
       <DependentUpon>Uavt.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Villages.cs">
+      <DependentUpon>Uavt.tt</DependentUpon>
+    </Compile>
     <Compile Include="Filters\DeflateAttribute.cs" />
     <Compile Include="Models\AuditLogModel.cs" />
-    <Compile Include="Models\FetchRequestModel.cs" />
+    <Compile Include="Models\ConfigurationModel.cs" />
+    <Compile Include="Data\FetchRequestModel.cs" />
     <Compile Include="Models\FetchResponseModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Controllers\UavtController.cs" />
@@ -210,10 +223,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\SubscriberModel.cs" />
     <Compile Include="Models\UavtDataModel.cs" />
     <Compile Include="Models\UavtModel.cs" />
     <Compile Include="Models\UserSyncHistoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\Tester.cs" />
     <Compile Include="Utils\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>

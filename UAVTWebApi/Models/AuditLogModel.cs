@@ -8,6 +8,7 @@ namespace UAVTWebapi.Models {
         public long UserSerno { get; set; }
         public string AuditOptionSelection { get; set; }
         public string AuditFormSerno { get; set; }
+        public string AuditFormSernoText { get; set; }
         public string AuditFormDescription { get; set; }
         public string AuditProgressStatus { get; set; }
         public string AuditedCheckStatus { get; set; }

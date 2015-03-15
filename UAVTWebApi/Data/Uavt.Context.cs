@@ -32,5 +32,8 @@ namespace UAVTWebapi.Data
         public virtual DbSet<ABONE_BILGI> ABONE_BILGI { get; set; }
         public virtual DbSet<uavt_63> uavt_63 { get; set; }
         public virtual DbSet<AuditLogs> AuditLogs { get; set; }
+        public virtual DbSet<Villages> Villages { get; set; }
+        public virtual DbSet<Configurations> Configurations { get; set; }
+        public virtual DbSet<Cities> Cities { get; set; }
     }
 }

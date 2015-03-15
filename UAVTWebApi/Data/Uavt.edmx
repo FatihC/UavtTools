@@ -10,6 +10,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IL_KODU" Type="nvarchar" MaxLength="30" />
           <Property Name="BOLGE_KODU" Type="decimal" Precision="28" Scale="0" />
           <Property Name="BOLGE_ADI" Type="nvarchar" MaxLength="30" />
           <Property Name="KARNE_NO" Type="decimal" Precision="28" Scale="0" />
@@ -33,10 +34,12 @@
           <Property Name="UserSerno" Type="numeric" Precision="19" Scale="0" />
           <Property Name="OptionSelection" Type="nvarchar(max)" />
           <Property Name="FormSerno" Type="nvarchar(max)" />
+          <Property Name="FormSernoText" Type="nvarchar(max)" />
           <Property Name="FormDescription" Type="nvarchar(max)" />
           <Property Name="ProgressStatus" Type="nvarchar(max)" />
           <Property Name="PreviousCheckStatus" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="CityCode" Type="nvarchar(max)" />
           <Property Name="DistrictCode" Type="nvarchar(max)" />
           <Property Name="VillageCode" Type="nvarchar(max)" />
           <Property Name="StreetCode" Type="nvarchar(max)" />
@@ -50,12 +53,39 @@
           <Property Name="ProcessDate" Type="numeric" Precision="19" Scale="0" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'UAVT.dbo.Configurations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Configurations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CountyCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="CountyName" Type="nvarchar" MaxLength="255" />
+          <Property Name="DistrictCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="MappedDistrictCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="DistrictName" Type="nvarchar" MaxLength="255" />
+          <Property Name="VillageCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="VillageName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="Districts">
           <Key>
-            <PropertyRef Name="districtCode" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="districtCode" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="districtName" Type="varchar" MaxLength="255" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityCode" Type="float" />
+          <Property Name="DistrictCode" Type="float" />
+          <Property Name="DistrictName" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="uavt_63">
           <Key>
@@ -86,6 +116,7 @@
           <Property Name="serno" Type="numeric" Precision="19" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="checkStatus" Type="int" />
           <Property Name="createDate" Type="numeric" Precision="19" Scale="0" />
+          <Property Name="cityCode" Type="varchar" MaxLength="255" />
           <Property Name="customerName" Type="varchar" MaxLength="255" />
           <Property Name="districtCode" Type="varchar" MaxLength="255" />
           <Property Name="doorNumber" Type="varchar" MaxLength="255" />
@@ -103,6 +134,7 @@
           <Property Name="siteName" Type="varchar" MaxLength="255" />
           <Property Name="blockName" Type="varchar" MaxLength="255" />
           <Property Name="meterBrandCode" Type="varchar" MaxLength="255" />
+          <Property Name="status" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -126,14 +158,43 @@
           <Property Name="lastUavtSyncDate" Type="numeric" Precision="19" Scale="0" />
           <Property Name="userSerno" Type="numeric" Precision="19" Scale="0" />
         </EntityType>
+        <EntityType Name="Villages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CITY_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="COUNTY_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="COUNTY_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISTRICT_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="DISTRICT_NAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="VILLAGE_CODE" Type="nvarchar" MaxLength="255" />
+          <Property Name="VILLAGE_NAME" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityContainer Name="UAVTModelStoreContainer">
           <EntitySet Name="ABONE_BILGI" EntityType="Self.ABONE_BILGI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AuditLogs" EntityType="Self.AuditLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Districts" EntityType="Self.Districts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="uavt_63" EntityType="Self.uavt_63" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Uavts" EntityType="Self.Uavts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserSyncHistories" EntityType="Self.UserSyncHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Villages" EntityType="Self.Villages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configurations" EntityType="Self.Configurations" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Configurations].[Id] AS [Id], 
+    [Configurations].[CityCode] AS [CityCode], 
+    [Configurations].[CityName] AS [CityName], 
+    [Configurations].[CountyCode] AS [CountyCode], 
+    [Configurations].[CountyName] AS [CountyName], 
+    [Configurations].[DistrictCode] AS [DistrictCode], 
+    [Configurations].[MappedDistrictCode] AS [MappedDistrictCode], 
+    [Configurations].[DistrictName] AS [DistrictName], 
+    [Configurations].[VillageCode] AS [VillageCode], 
+    [Configurations].[VillageName] AS [VillageName]
+    FROM [dbo].[Configurations] AS [Configurations]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -141,10 +202,12 @@
       <Schema Namespace="UAVTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Districts">
           <Key>
-            <PropertyRef Name="districtCode" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="districtCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="districtName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityCode" Type="Double" />
+          <Property Name="DistrictCode" Type="Double" />
+          <Property Name="DistrictName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Uavts">
           <Key>
@@ -170,6 +233,8 @@
           <Property Name="siteName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="blockName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="meterBrandCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="cityCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -201,6 +266,9 @@
           <EntitySet Name="ABONE_BILGI" EntityType="UAVTModel.ABONE_BILGI" />
           <EntitySet Name="uavt_63" EntityType="UAVTModel.uavt_63" />
           <EntitySet Name="AuditLogs" EntityType="UAVTModel.AuditLogs" />
+          <EntitySet Name="Villages" EntityType="UAVTModel.Villages" />
+          <EntitySet Name="Configurations" EntityType="UAVTModel.Configurations" />
+          <EntitySet Name="Cities" EntityType="UAVTModel.Cities" />
         </EntityContainer>
         <EntityType Name="ABONE_BILGI">
           <Key>
@@ -221,6 +289,7 @@
           <Property Name="IPTAL_TARIHI" Type="Decimal" Precision="28" Scale="0" />
           <Property Name="SOZLESME_UNVANI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AKTARIM_ZAMANI" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="IL_KODU" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="uavt_63">
           <Key>
@@ -268,6 +337,44 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="PreviousCheckStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FormSernoText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CityCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Villages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CITY_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="COUNTY_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="COUNTY_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DISTRICT_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DISTRICT_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VILLAGE_CODE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VILLAGE_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Configurations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CountyCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CountyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VillageCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VillageName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MappedDistrictCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -278,14 +385,18 @@
           <EntitySetMapping Name="Districts">
             <EntityTypeMapping TypeName="UAVTModel.Districts">
               <MappingFragment StoreEntitySet="Districts">
-                <ScalarProperty Name="districtCode" ColumnName="districtCode" />
-                <ScalarProperty Name="districtName" ColumnName="districtName" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Uavts">
             <EntityTypeMapping TypeName="UAVTModel.Uavts">
               <MappingFragment StoreEntitySet="Uavts">
+                <ScalarProperty Name="cityCode" ColumnName="cityCode" />
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="meterBrandCode" ColumnName="meterBrandCode" />
                 <ScalarProperty Name="blockName" ColumnName="blockName" />
                 <ScalarProperty Name="siteName" ColumnName="siteName" />
@@ -336,6 +447,7 @@
           <EntitySetMapping Name="ABONE_BILGI">
             <EntityTypeMapping TypeName="UAVTModel.ABONE_BILGI">
               <MappingFragment StoreEntitySet="ABONE_BILGI">
+                <ScalarProperty Name="IL_KODU" ColumnName="IL_KODU" />
                 <ScalarProperty Name="AKTARIM_ZAMANI" ColumnName="AKTARIM_ZAMANI" />
                 <ScalarProperty Name="SOZLESME_UNVANI" ColumnName="SOZLESME_UNVANI" />
                 <ScalarProperty Name="IPTAL_TARIHI" ColumnName="IPTAL_TARIHI" />
@@ -380,6 +492,8 @@
           <EntitySetMapping Name="AuditLogs">
             <EntityTypeMapping TypeName="UAVTModel.AuditLogs">
               <MappingFragment StoreEntitySet="AuditLogs">
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="FormSernoText" ColumnName="FormSernoText" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="PreviousCheckStatus" ColumnName="PreviousCheckStatus" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -400,6 +514,45 @@
                 <ScalarProperty Name="OptionSelection" ColumnName="OptionSelection" />
                 <ScalarProperty Name="UserSerno" ColumnName="UserSerno" />
                 <ScalarProperty Name="Serno" ColumnName="Serno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Villages">
+            <EntityTypeMapping TypeName="UAVTModel.Villages">
+              <MappingFragment StoreEntitySet="Villages">
+                <ScalarProperty Name="VILLAGE_NAME" ColumnName="VILLAGE_NAME" />
+                <ScalarProperty Name="VILLAGE_CODE" ColumnName="VILLAGE_CODE" />
+                <ScalarProperty Name="DISTRICT_NAME" ColumnName="DISTRICT_NAME" />
+                <ScalarProperty Name="DISTRICT_CODE" ColumnName="DISTRICT_CODE" />
+                <ScalarProperty Name="COUNTY_NAME" ColumnName="COUNTY_NAME" />
+                <ScalarProperty Name="COUNTY_CODE" ColumnName="COUNTY_CODE" />
+                <ScalarProperty Name="CITY_CODE" ColumnName="CITY_CODE" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configurations">
+            <EntityTypeMapping TypeName="UAVTModel.Configurations">
+              <MappingFragment StoreEntitySet="Configurations">
+                <ScalarProperty Name="MappedDistrictCode" ColumnName="MappedDistrictCode" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="VillageName" ColumnName="VillageName" />
+                <ScalarProperty Name="VillageCode" ColumnName="VillageCode" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="CountyCode" ColumnName="CountyCode" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="UAVTModel.Cities">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

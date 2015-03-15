@@ -80,6 +80,16 @@ namespace UAVT.Utils {
             return execPath;
         }
 
+        public static string NormalizeForInsert(this string textValue) {
+            if(String.IsNullOrEmpty(textValue)) {
+                return "";
+            }
+
+            var charset = new[] { "'","+","/",",","\\" };
+
+            return charset.Aggregate(textValue, (current, s) => current.Replace(s, ""));
+        }
+
         public static string GetConvertedLongValue(decimal? value) {
             if(value == null) {
                 return "";
@@ -91,12 +101,6 @@ namespace UAVT.Utils {
             }
 
             return strVal;
-        }
-
-        public static List<District> GetDistricts()
-        {
-            var dist = new District();
-            return dist.GetDistricts();
         }
 
     }

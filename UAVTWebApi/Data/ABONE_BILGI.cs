@@ -29,5 +29,6 @@ namespace UAVTWebapi.Data
         public Nullable<decimal> IPTAL_TARIHI { get; set; }
         public string SOZLESME_UNVANI { get; set; }
         public string AKTARIM_ZAMANI { get; set; }
+        public string IL_KODU { get; set; }
     }
 }

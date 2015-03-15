@@ -34,5 +34,7 @@ namespace UAVTWebapi.Data
         public Nullable<bool> IsActive { get; set; }
         public string PreviousCheckStatus { get; set; }
         public string Status { get; set; }
+        public string FormSernoText { get; set; }
+        public string CityCode { get; set; }
     }
 }
